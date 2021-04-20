@@ -1,0 +1,26 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+# using service containers on CircleCI
+# https://github.com/cypress-io/circleci-orb/blob/master/docs/recipes.md#service-containers
+# https://circleci.com/docs/2.0/databases/
+executors:
+  with-mongo:
+    docker:
+      # image used to install source code,
+      # run our server and run Cypress tests
+      - image: cypress/base:12.16.1
+        environment:
+          MONGO_URI: mongodb://$MONGO_USERNAME:$MONGO_PASSWORD@localhost:27017/?authSource=admin
+
+      # image used to run Mongo in a separate container
+      - image: mongo:4.4.5
+        environment:
+          MONGO_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+          MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          executor: with-mongo
+          start: npm start
