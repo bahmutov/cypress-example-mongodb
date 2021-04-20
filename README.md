@@ -17,4 +17,11 @@ docker run -d --name mongo-on-docker \
   mongo
 ```
 
+**Tip:** to stop and remove the container later use the following commands:
+
+```
+docker stop mongo-on-docker
+docker rm mongo-on-docker
+```
+
 Using [Studio 3T](https://studio3t.com/) to explore the local Mongo DB
