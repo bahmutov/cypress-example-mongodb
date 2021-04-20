@@ -24,3 +24,5 @@ workflows:
       - cypress/run:
           executor: with-mongo
           start: npm start
+          # no need to save the workspace after this job
+          no-workspace: true
