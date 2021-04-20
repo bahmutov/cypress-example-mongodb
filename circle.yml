@@ -9,7 +9,7 @@ executors:
     docker:
       # image used to install source code,
       # run our server and run Cypress tests
-      - image: cypress/base:12.16.1
+      - image: cypress/base:14.16.0
         environment:
           MONGO_URI: mongodb://$MONGO_USERNAME:$MONGO_PASSWORD@localhost:27017/?authSource=admin
 
