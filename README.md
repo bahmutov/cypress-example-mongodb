@@ -11,7 +11,7 @@ docker pull mongo
 
 ```shell
 docker run -d --name mongo-on-docker \
-  -p 27888:27017 \
+  -p 27017:27017 \
   -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
   -e MONGO_INITDB_ROOT_PASSWORD=secret \
   mongo

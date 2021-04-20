@@ -1,4 +1,4 @@
-const { connect, disconnect } = require('./db')
+const { connect } = require('./db')
 const express = require('express')
 const bodyParser = require('body-parser')
 
@@ -46,6 +46,8 @@ async function initServer() {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)
   })
+
+  // TODO implement disconnect on quit signal
 }
 
 initServer().catch(console.dir)
