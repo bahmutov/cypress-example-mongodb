@@ -1,7 +1,8 @@
 {
   "name": "cypress-example-mongodb",
   "version": "1.0.0",
-  "description": "",
+  "description": "Example Cypress doing the API testing against Mongo",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +17,7 @@
     "mongodb": "3.6.6"
   },
   "devDependencies": {
+    "cypress": "7.1.0",
     "prettier": "2.2.1"
   }
 }

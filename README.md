@@ -1,4 +1,5 @@
 # cypress-example-mongodb
+> Example Cypress doing the API testing against Mongo
 
 Run MongoDB locally via Docker, [reference](https://www.code4it.dev/blog/run-mongodb-on-docker)
 

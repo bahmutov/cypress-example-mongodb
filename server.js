@@ -6,11 +6,15 @@ const app = express()
 app.use(bodyParser.json()) // for parsing application/json
 
 let db
+let pizzas
 
 app.get('/pizza', async (req, res) => {
   console.log('getting pizza list')
 
-  const pizzas = db.collection('pizzas')
+  if (!pizzas) {
+    pizzas = db.collection('pizzas')
+  }
+
   const cursor = pizzas.find()
   const count = await cursor.count()
   if (count === 0) {
@@ -26,7 +30,10 @@ app.get('/pizza', async (req, res) => {
 app.post('/pizza', async (req, res) => {
   console.log('POST pizza', req.body)
 
-  const pizzas = db.collection('pizzas')
+  if (!pizzas) {
+    pizzas = db.collection('pizzas')
+  }
+
   const result = await pizzas.insertOne(req.body)
   console.log('inserted %s', result.insertedId)
   res.json({ _id: result.insertedId })
