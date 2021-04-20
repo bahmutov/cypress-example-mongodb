@@ -1,32 +1,18 @@
-const { MongoClient } = require("mongodb");
-// Connection URI
-const uri = "mongodb://mongoadmin:secret@localhost:27888/?authSource=admin";
+const { connect, disconnect } = require('./db')
 
-// Create a new MongoClient
-const client = new MongoClient(uri);
 async function run() {
   try {
-    // Connect the client to the server
-    await client.connect();
+    const db = await connect()
 
-    const db = client.db('pizza')
     const pizzas = db.collection('pizzas')
     const p = {
       name: 'pizza name',
-      town: 'Napoli'
+      town: 'Napoli',
     }
     const result = await pizzas.insertOne(p)
-    console.log(result)
-
-    // Establish and verify connection
-    // await client.db("pizza").command({ ping: 1 });
-    // console.log("Connected successfully to server");
-
-
-
+    console.log('inserted new pizza')
   } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    await disconnect()
   }
 }
-run().catch(console.dir);
+run().catch(console.dir)
